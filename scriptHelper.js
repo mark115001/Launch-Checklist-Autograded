@@ -21,11 +21,6 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
     // alert(testInput)
     
     switch(typeof testInput) {
-        case "":
-        case null:
-            return "Empty"
-            break;
-        
         case "string":
             return "Not a Number"
             break;
