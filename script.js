@@ -1,5 +1,15 @@
 // Write your JavaScript code here!
 
+// const { formSubmission } = require("./scriptHelper");
+
+// const { formSubmission } = require("./scriptHelper");
+
+// const { addDestinationInfo } = require("./scriptHelper");
+
+// const { pickPlanet } = require("./scriptHelper");
+
+// const { myFetch } = require("./scriptHelper");
+
 window.addEventListener("load", function () {
   // alert("Beginning Document Window")
 
@@ -8,67 +18,57 @@ window.addEventListener("load", function () {
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     let fd = new FormData(form);
-    // this.fetch('https://httpbin.org/post', {
-    //     method: "POST",
-    //     body:   fd,
-    // })
-    //     .then(res => res.json())
-    //     .then(res => console.log(res))
-
-    //     alert(res.pilotName)
 
     let dataCheck = "";
-    for (item of fd) {
-      if (item[1] !== "" && item[1] !== null) {
-        dataCheck = validateInput(item[1]);
-      } else {
-        this.alert(`'${item[0]} is empty'...all form fields must be completed`);
-      }
-      if (dataCheck === "Not a Number") {
-        if (item[0] === "pilotStatus") {
-            this.document.getElementById(item[0]).innerHTML = (`Pilot '${item[1]}' ready`)
-        } else {
-            this.document.getElementById(item[0]).innerHTML = (`Co-pilot '${item[1]}' ready`)
-        }
-      }
+    validAnswers = [];
+    for  (item of fd) {
+        dataCheck = validateInput(item[1])
+            if(dataCheck !== "Empty") {
+              validAnswers.push(item[1])
+            } else {
+              alert("All fields are required")
+              this.window.stop
+              // break;                   
+          }
+        }  
 
-      let readyToLaunch = ""
-      if (item[0] === "fuelStatus") {
-        if(item[1] < 10000) {
-            this.document.getElementById(item[0]).innerHTML = (`Insufficient fuel for launch`)
-            readyToLaunch = "NO"
-        }
-      } 
+        documentDiv = document.getElementById("faultyItems")
+        statusList = [document.getElementById("pilotStatus"), document.getElementById("copilotStatus"),document.getElementById("fuelStatus"),document.getElementById("cargoStatus"),document.getElementById("launchStatus")]
+        formSubmission(documentDiv, statusList, validAnswers[0], validAnswers[1], validAnswers[2], validAnswers[3])
+        
+    //  // })
+    
+    //-----TASK 3 Begins Here
+    // alert("Listed Planets")
+    let listedPlanets;
+    // Set listedPlanetsResponse equal to the value returned by calling myFetch()
+    let listedPlanetsResponse = myFetch();
+
+    listedPlanetsResponse.then(function (result) {
+      listedPlanets = result;
+    //   console.log(listedPlanets);
+    }).then(function () {
+      console.log(listedPlanets);
+     
       
-      if (item[0] === "cargoStatus") {
-        if (item[1] > 10000) {
-        this.document.getElementById(item[0]).innerHTML = (`Shuttle to heavy to launch`)
-        readyToLaunch = "NO"
-            }
-        }
+      // Below this comment call the appropriate helper functions to pick a planet fom the list of planets and add that information to your destination.
+      
+      let planetChoice = pickPlanet(listedPlanets);
+      
+      // let missionTarget = document.getElementById("missionTarget")
+      // addDestinationInfo(missionTarget,
+      addDestinationInfo(document.getElementById("missionTarget"),
+      listedPlanets[planetChoice].name,
+      listedPlanets[planetChoice].diameter,
+      listedPlanets[planetChoice].star,
+      listedPlanets[planetChoice].distance,
+      listedPlanets[planetChoice].moons,
+      listedPlanets[planetChoice].image,
+      )
 
 
-        if (readyToLaunch === "NO") {
-            this.document.getElementById("launchStatus").innerHTML = (`Shuttle is not ready for launch`)
-            this.document.getElementById("launchStatus").style="color: red"
-            this.document.getElementById("faultyItems").style.visibility = 'visible'
-        } else {
-            this.document.getElementById("launchStatus").style="color: green"
-        }
-
-
-        }
-     // })
     });
+  // Task 3 Ends Here 
 
-  // alert("Listed Planets")
-  // let listedPlanets;
-  // // Set listedPlanetsResponse equal to the value returned by calling myFetch()
-  // let listedPlanetsResponse = myFetch();
-  // listedPlanetsResponse.then(function (result) {
-  //     listedPlanets = result;
-  //     console.log(listedPlanets);
-  // }).then(function () {
-  //     console.log(listedPlanets);
-  //     // Below this comment call the appropriate helper functions to pick a planet fom the list of planets and add that information to your destination.
+  });
 });

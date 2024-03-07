@@ -1,5 +1,7 @@
 // Write your helper functions here!
 
+const { toBeEmptyDOMElement } = require('@testing-library/jest-dom/matchers');
+
 require('cross-fetch/polyfill');
 
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
@@ -15,39 +17,89 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
                  </ol>
                  <img src="">
     */
- }
+//    let missionTarget = document.getElementById("missionTarget")
+//    missionTarget.innerHTML += `<h2>Mission Destination</h2>
+   document.innerHTML += `<h2>Mission Destination</h2>
+   <ol>
+        <li>Name: ${name}</li>
+        <li>Diameter: ${diameter}</li>
+        <li>Star: ${star}</li>
+        <li>Distance from Earth: ${distance}</li>
+        <li>Number of moons: ${moons}</li>  
+  </ol>
+        <img src=${imageUrl}></img>`
+}
  
  function validateInput(testInput) {
     // alert(testInput)
-    
-    switch(typeof testInput) {
-        case "string":
-            return "Not a Number"
-            break;
 
-        case "number":
-            return "Is a Number"
-            break;            
+    if (testInput === "" || testInput === null) {
+        return "Empty"
+    }
+
+    if (parseFloat(testInput)) {
+        return "Is a Number"
+    }
+
+    if (!parseFloat(testInput) || isNaN(testInput)) {
+        return "Not a Number"
+    }
+
+}
+
+ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
+    let launchReadyStatus;
+  
+    list[0].innerHTML = `Pilot ${pilot} is ready for launch`
+    list[1].innerHTML = `Co-pilot ${copilot} is ready for launch`
+
+    if(fuelLevel < Number(10000)) {
+        list[2].innerHTML = `There is not enough fuel for the journey`
+        launchReadyStatus = false
 
     }
-    
 
- }
- 
- function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-    
- }
+    if (cargoLevel > Number(10000)) {
+        // document.style.visibility = "visible"
+        list[3].innerHTML = `There is to much mass for the shuttle to launch`
+        launchReadyStatus = false
+    }
+
+    if (launchReadyStatus === false) {
+        document.style.visibility = "visible"
+        list[4].innerHTML = "Shuttle not ready for launch"
+        list[4].style="color: red"
+    } else {
+        document.style.visibility = "hidden"
+        list[4].innerHTML = "Shuttle is ready for launch"
+        list[4].style="color: green"
+
+        }
+        
+    }
  
  async function myFetch() {
      let planetsReturned;
  
-     planetsReturned = await fetch().then( function(response) {
-         });
+     planetsReturned = await fetch('https://handlers.education.launchcode.org/static/planets.json')
+
+     .then(res => {
+        return res.json();
+    })
+
+    // .then(data => {
+    //     console.log(data)
+    // })
  
      return planetsReturned;
  }
  
  function pickPlanet(planets) {
+    let planetsResponse = Math.floor(Math.random() * 7)
+
+    return planetsResponse;
+
+
  }
  
  module.exports.addDestinationInfo = addDestinationInfo;
