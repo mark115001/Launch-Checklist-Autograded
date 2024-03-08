@@ -2,8 +2,6 @@
 
 // const { formSubmission } = require("./scriptHelper");
 
-// const { formSubmission } = require("./scriptHelper");
-
 // const { addDestinationInfo } = require("./scriptHelper");
 
 // const { pickPlanet } = require("./scriptHelper");
@@ -15,9 +13,11 @@ window.addEventListener("load", function () {
 
   let form = document.querySelector("form");
   // console.log(form)
+  let event
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     let fd = new FormData(form);
+    
 
     let dataCheck = "";
     validAnswers = [];
@@ -27,7 +27,6 @@ window.addEventListener("load", function () {
               validAnswers.push(item[1])
             } else {
               alert("All fields are required")
-              this.window.stop
               // break;                   
           }
         }  
@@ -57,6 +56,7 @@ window.addEventListener("load", function () {
       
       // let missionTarget = document.getElementById("missionTarget")
       // addDestinationInfo(missionTarget,
+
       addDestinationInfo(document.getElementById("missionTarget"),
       listedPlanets[planetChoice].name,
       listedPlanets[planetChoice].diameter,
@@ -69,6 +69,5 @@ window.addEventListener("load", function () {
 
     });
   // Task 3 Ends Here 
-
   });
 });

@@ -56,13 +56,16 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
     if(fuelLevel < Number(10000)) {
         list[2].innerHTML = `There is not enough fuel for the journey`
         launchReadyStatus = false
-
+    } else {
+        list[2].innerHTML = `Fuel level high enough for launch`
     }
 
     if (cargoLevel > Number(10000)) {
         // document.style.visibility = "visible"
         list[3].innerHTML = `There is to much mass for the shuttle to launch`
         launchReadyStatus = false
+    } else {
+        list[3].innerHTML = `Cargo mass low enough for launch`
     }
 
     if (launchReadyStatus === false) {
