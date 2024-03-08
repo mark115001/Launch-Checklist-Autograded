@@ -30,21 +30,33 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
         <img src=${imageUrl}></img>`
 }
  
- function validateInput(testInput) {
+ function validateInput(item0, testInput) {
     // alert(testInput)
+    let statusValue = ""
 
     if (testInput === "" || testInput === null) {
-        return "Empty"
+        alert(`${item0} is a required field`)
+        statusValue = "Empty"
     }
 
     if (parseFloat(testInput)) {
-        return "Is a Number"
+        if (item0==="fuelLevel" || item0==="cargoMass") {
+        statusValue = "Is a Number"
+        } else {
+            alert(`${item0} cannot be a number`)
+            statusValue = "Empty"
+        }
     }
 
-    if (!parseFloat(testInput) || isNaN(testInput)) {
-        return "Not a Number"
+    if (isNaN(testInput)) {
+        if (item0==="pilotName" || item0==="copilotName") {
+        statusValue = "Not a Number"
+        } else {
+            alert(`${item0} cannot be letters`)
+            statusValue = "Empty"
+        }
     }
-
+        return statusValue;
 }
 
  function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
@@ -54,7 +66,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
     list[1].innerHTML = `Co-pilot ${copilot} is ready for launch`
 
     if(fuelLevel < Number(10000)) {
-        list[2].innerHTML = `There is not enough fuel for the journey`
+        list[2].innerHTML = `*** There is not enough fuel for the journey ***`
         launchReadyStatus = false
     } else {
         list[2].innerHTML = `Fuel level high enough for launch`
@@ -62,7 +74,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 
     if (cargoLevel > Number(10000)) {
         // document.style.visibility = "visible"
-        list[3].innerHTML = `There is to much mass for the shuttle to launch`
+        list[3].innerHTML = `*** There is to much mass for the shuttle to launch ***`
         launchReadyStatus = false
     } else {
         list[3].innerHTML = `Cargo mass low enough for launch`

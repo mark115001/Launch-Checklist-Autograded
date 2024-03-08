@@ -12,8 +12,7 @@ window.addEventListener("load", function () {
   // alert("Beginning Document Window")
 
   let form = document.querySelector("form");
-  // console.log(form)
-  let event
+  let eventCount = 0;   //Only do plant choice once 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     let fd = new FormData(form);
@@ -22,12 +21,11 @@ window.addEventListener("load", function () {
     let dataCheck = "";
     validAnswers = [];
     for  (item of fd) {
-        dataCheck = validateInput(item[1])
+        dataCheck = validateInput(item[0], item[1])
             if(dataCheck !== "Empty") {
               validAnswers.push(item[1])
             } else {
-              alert("All fields are required")
-              // break;                   
+              return   //Stop Processing to fill in empty form fields               
           }
         }  
 
@@ -37,6 +35,7 @@ window.addEventListener("load", function () {
         
     //  // })
     
+    if (eventCount === 0) {
     //-----TASK 3 Begins Here
     // alert("Listed Planets")
     let listedPlanets;
@@ -68,6 +67,8 @@ window.addEventListener("load", function () {
 
 
     });
+  }
+  eventCount += 1
   // Task 3 Ends Here 
   });
 });
