@@ -12,30 +12,32 @@ window.addEventListener("load", function () {
   // alert("Beginning Document Window")
 
   let form = document.querySelector("form");
-  let eventCount = 0;   //Only do plant choice once 
+  let eventCount = 0;   //Only do planet choice one time
   form.addEventListener("submit", (event) => {
     event.preventDefault();
-    let fd = new FormData(form);
+    let fd = new FormData(form);  //Takes all form responses and creates key/value pairs
     
 
     let dataCheck = "";
     validAnswers = [];
-    for  (item of fd) {
+    for  (item of fd) {       //Read the key:value pairs created above. 
         dataCheck = validateInput(item[0], item[1])
             if(dataCheck !== "Empty") {
               validAnswers.push(item[1])
             } else {
-              return   //Stop Processing to fill in empty form fields               
+              return   //Stop Processing to fill in and or correct form fields               
           }
         }  
 
-        documentDiv = document.getElementById("faultyItems")
-        statusList = [document.getElementById("pilotStatus"), document.getElementById("copilotStatus"),document.getElementById("fuelStatus"),document.getElementById("cargoStatus"),document.getElementById("launchStatus")]
+        documentDiv = document.getElementById("faultyItems")  //reference to faultyItems
+
+        //creates list of form status and sent as the list for formSubmission
+        statusList = [document.getElementById("pilotStatus"), document.getElementById ("copilotStatus"),document.getElementById("fuelStatus"),document.getElementById("cargoStatus"),document.getElementById("launchStatus")]
         formSubmission(documentDiv, statusList, validAnswers[0], validAnswers[1], validAnswers[2], validAnswers[3])
         
     //  // })
     
-    if (eventCount === 0) {
+    if (eventCount === 0) {   //only gets a planet one time
     //-----TASK 3 Begins Here
     // alert("Listed Planets")
     let listedPlanets;
@@ -51,7 +53,7 @@ window.addEventListener("load", function () {
       
       // Below this comment call the appropriate helper functions to pick a planet fom the list of planets and add that information to your destination.
       
-      let planetChoice = pickPlanet(listedPlanets);
+      let planetChoice = pickPlanet(listedPlanets);  //selects random planet
       
       // let missionTarget = document.getElementById("missionTarget")
       // addDestinationInfo(missionTarget,

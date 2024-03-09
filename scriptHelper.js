@@ -66,7 +66,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
     list[1].innerHTML = `Co-pilot ${copilot} is ready for launch`
 
     if(fuelLevel < Number(10000)) {
-        list[2].innerHTML = `*** There is not enough fuel for the journey ***`
+        list[2].innerHTML = `Fuel level too low for launch`
         launchReadyStatus = false
     } else {
         list[2].innerHTML = `Fuel level high enough for launch`
@@ -74,7 +74,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 
     if (cargoLevel > Number(10000)) {
         // document.style.visibility = "visible"
-        list[3].innerHTML = `*** There is to much mass for the shuttle to launch ***`
+        list[3].innerHTML = `Cargo mass too heavy for launch`
         launchReadyStatus = false
     } else {
         list[3].innerHTML = `Cargo mass low enough for launch`
