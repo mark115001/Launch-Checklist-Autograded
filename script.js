@@ -4,73 +4,41 @@
 
 // const { addDestinationInfo } = require("./scriptHelper");
 
-// const { pickPlanet } = require("./scriptHelper");
+// const { addDestinationInfo } = require("./scriptHelper");
 
-// const { myFetch } = require("./scriptHelper");
+window.addEventListener("load", function(event) {
+  event.preventDefault();
 
-window.addEventListener("load", function () {
-  // alert("Beginning Document Window")
-
-  let form = document.querySelector("form");
-  let eventCount = 0;   //Only do planet choice one time
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    let fd = new FormData(form);  //Takes all form responses and creates key/value pairs
-    
-
-    let dataCheck = "";
-    validAnswers = [];
-    for  (item of fd) {       //Read the key:value pairs created above. 
-        dataCheck = validateInput(item[0], item[1])
-            if(dataCheck !== "Empty") {
-              validAnswers.push(item[1])
-            } else {
-              return   //Stop Processing to fill in and or correct form fields               
-          }
-        }  
-
-        documentDiv = document.getElementById("faultyItems")  //reference to faultyItems
-
-        //creates list of form status and sent as the list for formSubmission
-        statusList = [document.getElementById("pilotStatus"), document.getElementById ("copilotStatus"),document.getElementById("fuelStatus"),document.getElementById("cargoStatus"),document.getElementById("launchStatus")]
-        formSubmission(documentDiv, statusList, validAnswers[0], validAnswers[1], validAnswers[2], validAnswers[3])
-        
-    //  // })
-    
-    if (eventCount === 0) {   //only gets a planet one time
-    //-----TASK 3 Begins Here
-    // alert("Listed Planets")
-    let listedPlanets;
-    // Set listedPlanetsResponse equal to the value returned by calling myFetch()
-    let listedPlanetsResponse = myFetch();
-
-    listedPlanetsResponse.then(function (result) {
+  let listedPlanets;
+  // Set listedPlanetsResponse equal to the value returned by calling myFetch()
+  let listedPlanetsResponse=myFetch();
+  listedPlanetsResponse.then(function (result) {
       listedPlanets = result;
-    //   console.log(listedPlanets);
-    }).then(function () {
       console.log(listedPlanets);
-     
-      
+  }).then(function () {
+      // console.log(listedPlanets);
+      let planet=pickPlanet(listedPlanets)
+      // alert(planet.name)
       // Below this comment call the appropriate helper functions to pick a planet fom the list of planets and add that information to your destination.
-      
-      let planetChoice = pickPlanet(listedPlanets);  //selects random planet
-      
-      // let missionTarget = document.getElementById("missionTarget")
-      // addDestinationInfo(missionTarget,
+      addDestinationInfo(document.getElementById("missionTarget"), planet.name, planet.diameter, planet.star, planet.distance, planet.moons, planet.image)
+    })
+    let form = document.querySelector("form");
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      let fd = new FormData(form);  //Takes all form responses and creates key/value pairs
 
-      addDestinationInfo(document.getElementById("missionTarget"),
-      listedPlanets[planetChoice].name,
-      listedPlanets[planetChoice].diameter,
-      listedPlanets[planetChoice].star,
-      listedPlanets[planetChoice].distance,
-      listedPlanets[planetChoice].moons,
-      listedPlanets[planetChoice].image,
-      )
+      formAnswers = []
+      for (item of fd) {       //Read the key:value pairs created above. 
+        formAnswers.push(item[1])
+      }
+      // alert(formAnswers)
+
+      formSubmission(document.getElementById("launchStatus"), document.getElementById("faultyItems"), formAnswers[0], formAnswers[1], formAnswers[2], formAnswers[3], document.q)
 
 
-    });
-  }
-  eventCount += 1
-  // Task 3 Ends Here 
+    })
+
   });
-});
+
+ 
+  
