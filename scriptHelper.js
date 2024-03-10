@@ -68,7 +68,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
         list.style.visibility = "visible"
         document.innerHTML = "Shuttle Not Ready for Launch"
         document.style="color: red"
-        // pilotStatus.innerHTML = "Pilot Chris is ready for launch"
+        pilotStatus.innerHTML = "Pilot Chris is ready for launch"
         copilotStatus.innerHTML = "Co-pilot Bob is ready for launch"
         fuelStatus.innerHTML = "Fuel level too low for launch"
         cargoStatus.innerHTML = "Cargo mass low enough for launch"
