@@ -43,20 +43,20 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
     validCheck = validateInput(field)
     //    alert(validCheck)
     if (validCheck === "Empty"){
-        alert(`${field} is a required field`)
+        alert(`Required field not completed`)
         return
     }
     
     if (validCheck === "Is a Number") {
         if (field === pilot || field === copilot) {
-        alert (`${field} cannot be numeric`)
+        alert (`${field} field must use letters`)
         return
         }
     }
     
     if (validCheck === "Not a Number") {
             if (field === fuelLevel || field === cargoLevel) {
-            alert(`${field} cannot be letters`)
+            alert(`${field} field must use numbers`)
             return
             }
         }
@@ -64,6 +64,11 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 
     //Beginning "faultyItems checking"
 
+    // pilotStatus = list.pilotStatus
+    // copilotStatus = list.copilotStatus
+    // fuelStatus = list.fuelStatus
+    // cargoStatus = list.cargoStatus
+    
     if(fuelLevel < Number(10000)) {
         list.style.visibility = "visible"
         document.innerHTML = "Shuttle Not Ready for Launch"
