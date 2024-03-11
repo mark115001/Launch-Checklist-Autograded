@@ -33,6 +33,7 @@ window.addEventListener("load", function(event) {
       }
       // alert(formAnswers)
 
+      
       formSubmission(document.getElementById("launchStatus"), document.getElementById("faultyItems"), formAnswers[0], formAnswers[1], formAnswers[2], formAnswers[3], document.q)
 
 

@@ -83,6 +83,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
         fuelStatus.innerHTML = "Fuel level high enough for launch"
         cargoStatus.innerHTML = "Cargo mass too heavy for launch"
         }
+        
 
     if (cargoLevel >= Number(10000) && fuelLevel < Number(10000)) {
         list.style.visibility = "visible"
