@@ -63,12 +63,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
     }
 
     //Beginning "faultyItems checking"
-
-    // pilotStatus = list.pilotStatus
-    // copilotStatus = list.copilotStatus
-    // fuelStatus = list.fuelStatus
-    // cargoStatus = list.cargoStatus
-    
+   
     if(fuelLevel < Number(10000)) {
         list.style.visibility = "visible"
         document.innerHTML = "Shuttle Not Ready for Launch"
