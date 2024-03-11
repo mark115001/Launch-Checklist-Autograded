@@ -20,7 +20,7 @@ window.addEventListener("load", function(event) {
       let planet=pickPlanet(listedPlanets)
       // alert(planet.name)
       // Below this comment call the appropriate helper functions to pick a planet fom the list of planets and add that information to your destination.
-      addDestinationInfo(document.getElementById("missionTarget"), planet.name, planet.diameter, planet.star, planet.distance, planet.moons, planet.image)
+      addDestinationInfo(document, planet.name, planet.diameter, planet.star, planet.distance, planet.moons, planet.image)
     })
     let form = document.querySelector("form");
     form.addEventListener("submit", (event) => {
@@ -34,7 +34,7 @@ window.addEventListener("load", function(event) {
       // alert(formAnswers)
 
       
-      formSubmission(document.getElementById("launchStatus"), document.getElementById("faultyItems"), formAnswers[0], formAnswers[1], formAnswers[2], formAnswers[3], document.q)
+      formSubmission(document, document.getElementById("faultyItems"), formAnswers[0], formAnswers[1], formAnswers[2], formAnswers[3], document.q)
 
 
     })
