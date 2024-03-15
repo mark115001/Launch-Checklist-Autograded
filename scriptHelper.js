@@ -68,43 +68,43 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
    
     if(fuelLevel < Number(10000)) {
         document.getElementById("faultyItems").style.visibility = "visible"
-        document.getElementById("launchStatus").innerHTML = "Shuttle Not Ready for Launch"
+        document.getElementById("launchStatus").innerHTML = `Shuttle Not Ready for Launch`
         document.getElementById("launchStatus").style="color: red"
-        document.getElementById("pilotStatus").innerHTML = "Pilot Chris is ready for launch"
-        document.getElementById("copilotStatus").innerHTML = "Co-pilot Bob is ready for launch"
-        document.getElementById("fuelStatus").innerHTML = "Fuel level too low for launch"
+        document.getElementById("pilotStatus").innerHTML = `Pilot ${pilot} is ready for launch`
+        document.getElementById("copilotStatus").innerHTML = `Co-pilot ${copilot} is ready for launch`
+        document.getElementById("fuelStatus").innerHTML = `Fuel level too low for launch`
         document.getElementById("cargoStatus").innerHTML = "Cargo mass low enough for launch"
         }
 
     if (cargoLevel > Number(10000)) {
         document.getElementById("faultyItems").style.visibility = "visible"
-        document.getElementById("launchStatus").innerHTML = "Shuttle Not Ready for Launch"
+        document.getElementById("launchStatus").innerHTML = `Shuttle Not Ready for Launch`
         document.getElementById("launchStatus").style="color: red"
-        document.getElementById("pilotStatus").innerHTML = "Pilot Chris is ready for launch"
-        document.getElementById("copilotStatus").innerHTML = "Co-pilot Bob is ready for launch"
-        document.getElementById("fuelStatus").innerHTML = "Fuel level high enough for launch"
-        document.getElementById("cargoStatus").innerHTML = "Cargo mass too heavy for launch"
+        document.getElementById("pilotStatus").innerHTML = `Pilot ${pilot} is ready for launch`
+        document.getElementById("copilotStatus").innerHTML = `Co-pilot ${copilot} is ready for launch`
+        document.getElementById("fuelStatus").innerHTML = `Fuel level high enough for launch`
+        document.getElementById("cargoStatus").innerHTML = `Cargo mass too heavy for launch`
         }
         
 
     if (cargoLevel >= Number(10000) && fuelLevel < Number(10000)) {
         document.getElementById("faultyItems").style.visibility = "visible"
-        document.getElementById("launchStatus").innerHTML = "Shuttle Not Ready for Launch"
+        document.getElementById("launchStatus").innerHTML = `Shuttle Not Ready for Launch`
         document.getElementById("launchStatus").style="color: red"
-        document.getElementById("pilotStatus").innerHTML = "Pilot Chris is ready for launch"
-        document.getElementById("copilotStatus").innerHTML = "Co-pilot Bob is ready for launch"
-        document.getElementById("fuelStatus").innerHTML = "Fuel level too low for launch"
-        document.getElementById("cargoStatus").innerHTML = "Cargo mass too heavy for launch"
+        document.getElementById("pilotStatus").innerHTML = `Pilot ${pilot} is ready for launch`
+        document.getElementById("copilotStatus").innerHTML = `Co-pilot ${copilot} is ready for launch`
+        document.getElementById("fuelStatus").innerHTML = `Fuel level too low for launch`
+        document.getElementById("cargoStatus").innerHTML = `Cargo mass too heavy for launch`
         }
     
     if (cargoLevel < Number(10000) && fuelLevel >= Number(10000)) {
         document.getElementById("faultyItems").style.visibility = "visible"
-        document.getElementById("launchStatus").innerHTML = "Shuttle is Ready for Launch"
+        document.getElementById("launchStatus").innerHTML = `Shuttle is Ready for Launch`
         document.getElementById("launchStatus").style="color: green"
-        document.getElementById("pilotStatus").innerHTML = "Pilot Chris is ready for launch"
-        document.getElementById("copilotStatus").innerHTML = "Co-pilot Bob is ready for launch"
-        document.getElementById("fuelStatus").innerHTML = "Fuel level high enough for launch"
-        document.getElementById("cargoStatus").innerHTML = "Cargo mass low enough for launch"
+        document.getElementById("pilotStatus").innerHTML = `Pilot ${pilot} is ready for launch`
+        document.getElementById("copilotStatus").innerHTML = `Co-pilot ${copilot} is ready for launch`
+        document.getElementById("fuelStatus").innerHTML = `Fuel level high enough for launch`
+        document.getElementById("cargoStatus").innerHTML = `Cargo mass low enough for launch`
         }
     }
  
